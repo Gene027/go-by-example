@@ -4,6 +4,7 @@ import "log"
 
 /**
  * Map Examples demonstrates the usage and behavior of Go maps.
+ * Maps are key-value pairs that are unordered and unique.
  * Key concepts covered:
  * - Map creation and initialization
  * - Key-value operations

@@ -4,6 +4,7 @@ import "log"
 
 /**
  * Array Examples demonstrates the basic usage of arrays in Go.
+ * Arrays are fixed-size collections of elements of the same type.
  * Key concepts covered:
  * - Array declaration and initialization
  * - Fixed-size nature of arrays

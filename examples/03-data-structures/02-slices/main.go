@@ -5,6 +5,7 @@ import "log"
 /**
  * Slice Examples demonstrates the flexibility and power of Go slices.
  * Key concepts covered:
+ * - Slice is a dynamic array that can grow and shrink
  * - Slice creation and initialization
  * - Slice operations (append, copy)
  * - Slice capacity and growth

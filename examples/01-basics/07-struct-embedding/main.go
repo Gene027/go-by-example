@@ -6,9 +6,13 @@ import (
 )
 
 /**
- * Struct Embedding Examples demonstrates composition through embedding in Go.
+ * Struct and Struct Embedding Examples demonstrates structs and composition through embedding in Go.
+ * Structs are a collection of fields that are used to represent a single entity.
+ * Embedding is a way to inherit fields and methods from other structs.
  * Key concepts covered:
- * - Basic struct embedding
+ * - Basic struct definition and usage
+ * - Struct fields and methods
+ * - Struct embedding for composition
  * - Method promotion
  * - Interface satisfaction through embedding
  * - Multiple embedding
@@ -17,41 +21,42 @@ import (
 
 /**
  * Address represents a basic location structure
- * Used to demonstrate embedding in other structs
+ * Shows basic struct definition with fields
  */
 type Address struct {
-	Street  string
+	Street  string // Each field has a name and type
 	City    string
 	Country string
 }
 
+// Method defined on Address struct
 func (a Address) Format() string {
 	return fmt.Sprintf("%s, %s, %s", a.Street, a.City, a.Country)
 }
 
 /**
- * Person demonstrates basic struct embedding
- * Embeds Address to inherit its fields and methods
+ * Person demonstrates basic struct definition and embedding
+ * Shows both regular fields and embedded structs
  */
 type Person struct {
-	Name    string
+	Name    string // Regular struct fields
 	Age     int
-	Address // Embedded struct
+	Address // Embedded struct - inherits all fields and methods
 }
 
 /**
- * Employee demonstrates multiple embedding
- * Shows how to embed multiple structs and handle conflicts
+ * Employee demonstrates struct composition through multiple embedding
+ * Shows both embedded structs and regular struct fields
  */
 type Employee struct {
-	Person         // Embedded Person struct
+	Person         // Embedded Person struct - inherits Name, Age, and Address
 	CompanyName    string
-	CompanyAddress Address // Regular field, not embedded
+	CompanyAddress Address // Regular field - normal struct composition
 }
 
 /**
  * Logger interface for demonstration
- * Shows interface satisfaction through embedding
+ * Shows how structs can implement interfaces
  */
 type Logger interface {
 	Log(message string)
@@ -59,51 +64,53 @@ type Logger interface {
 
 /**
  * BaseLogger provides basic logging functionality
- * Will be embedded in other types
+ * Shows a simple struct with a method
  */
 type BaseLogger struct {
 	prefix string
 }
 
+// Method that implements Logger interface
 func (b BaseLogger) Log(message string) {
 	log.Printf("%s: %s\n", b.prefix, message)
 }
 
 /**
- * Service demonstrates interface satisfaction through embedding
- * Automatically satisfies Logger interface through BaseLogger
+ * Service demonstrates interface implementation through embedding
+ * Shows how embedded structs can help satisfy interfaces
  */
 type Service struct {
-	BaseLogger
-	name string
+	BaseLogger // Embedded struct provides Log method
+	name       string
 }
 
 func main() {
-	log.Println("=== Struct Embedding Examples ===")
+	log.Println("=== Struct and Struct Embedding Examples ===")
 
 	/**
-	 * 1. Basic struct embedding
-	 * Shows how embedded fields can be accessed directly
+	 * 1. Basic struct usage and embedding
+	 * Shows struct initialization and field access
 	 */
-	log.Println("\n1. Basic struct embedding")
-	person := Person{
+	log.Println("\n1. Basic struct usage and embedding")
+	person := Person{ // Initialize struct with field values
 		Name: "Alice",
 		Age:  30,
-		Address: Address{
+		Address: Address{ // Initialize embedded struct
 			Street:  "123 Main St",
 			City:    "Boston",
 			Country: "USA",
 		},
 	}
+	// Access fields and methods directly due to embedding
 	log.Printf("Person: %s, Address: %s\n", person.Name, person.Format())
 
 	/**
-	 * 2. Multiple embedding
-	 * Demonstrates embedding multiple structs
+	 * 2. Multiple embedding and composition
+	 * Shows complex struct relationships
 	 */
-	log.Println("\n2. Multiple embedding")
+	log.Println("\n2. Multiple embedding and composition")
 	employee := Employee{
-		Person: Person{
+		Person: Person{ // Initialize embedded Person struct
 			Name: "Bob",
 			Age:  35,
 			Address: Address{
@@ -113,32 +120,32 @@ func main() {
 			},
 		},
 		CompanyName: "Tech Corp",
-		CompanyAddress: Address{
+		CompanyAddress: Address{ // Initialize regular struct field
 			Street:  "789 Corp Ave",
 			City:    "New York",
 			Country: "USA",
 		},
 	}
 	log.Printf("Employee: %s, Home: %s, Work: %s\n",
-		employee.Name,
+		employee.Name, // Promoted field from Person
 		employee.Address.Format(),
 		employee.CompanyAddress.Format())
 
 	/**
 	 * 3. Interface satisfaction through embedding
-	 * Shows how embedded types can satisfy interfaces
+	 * Shows how embedded types can provide interface implementation
 	 */
 	log.Println("\n3. Interface satisfaction through embedding")
 	service := Service{
 		BaseLogger: BaseLogger{prefix: "SERVICE"},
 		name:       "MyService",
 	}
-	service.Log("Service started")
+	service.Log("Service started") // Method from embedded BaseLogger
 
 	/**
-	 * 4. Method promotion
-	 * Demonstrates how methods are promoted from embedded types
+	 * 4. Method promotion from embedded types
+	 * Shows how embedded struct methods become available
 	 */
 	log.Println("\n4. Method promotion")
-	log.Printf("Person address: %s\n", person.Format())
+	log.Printf("Person address: %s\n", person.Format()) // Format method from embedded Address
 }
