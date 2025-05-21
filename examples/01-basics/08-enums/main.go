@@ -52,6 +52,7 @@ const (
  */
 type FileMode uint
 
+// Filemode = 1 << iota is a bitwise operation that shifts the value of iota (which is 0) to the left by the number of positions specified by the iota value. in this case, iota is 0, so it shifts 0 to the left by 0 positions, which is 1. Execute is 4, because it shifts 1 to the left by 2 positions, which is 4.
 const (
 	Read    FileMode = 1 << iota // 1
 	Write                        // 2
@@ -60,6 +61,7 @@ const (
 
 func (f FileMode) String() string {
 	var permissions []string
+	// f&Read != 0 is a bitwise operation that checks if the Read flag is set in the FileMode.
 	if f&Read != 0 {
 		permissions = append(permissions, "read")
 	}
