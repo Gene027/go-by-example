@@ -3,7 +3,7 @@ package main
 import "log"
 
 /**
- * For Loop Examples demonstrates different ways to use for loops in Go.
+ * For loop is a control flow statement that allows you to execute a block of code repeatedly.
  * Key concepts covered:
  * - Basic for loop syntax
  * - For as while loop
@@ -18,6 +18,9 @@ func main() {
 	/**
 	 * 1. Basic for loop
 	 * Traditional three-component loop: initialization, condition, post
+	 * Initialization is usually used to initialize a counter variable.
+	 * Condition is usually used to check if the loop should continue.
+	 * Post is usually used to update the counter variable.
 	 */
 	log.Println("\n1. Basic for loop")
 	for i := 0; i < 3; i++ {
@@ -31,7 +34,7 @@ func main() {
 	log.Println("\n2. For as while loop")
 	sum := 1
 	for sum < 50 {
-		sum *= 2
+		sum *= 2 // This is the same as sum = sum * 2
 		log.Printf("Current sum: %d\n", sum)
 	}
 

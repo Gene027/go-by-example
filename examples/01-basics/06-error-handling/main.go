@@ -25,7 +25,12 @@ type CustomError struct {
 	Message string
 }
 
+/*
+In Go, to implement the error interface, a type must have a method with the signature Error() string.
+This method is used to return a string representation of the error.
+*/
 func (e *CustomError) Error() string {
+	//Sprintf is used to format the error message and return it as a string
 	return fmt.Sprintf("error %d: %s", e.Code, e.Message)
 }
 
@@ -59,7 +64,10 @@ func validateAge(age int) error {
 
 /**
  * processWithPanic demonstrates panic and recover
- * Shows how to handle unexpected errors
+ * Here we are handling unexpected errors.
+ * Firstly, we are using defer (which is called when the function returns more like finally in other languages) to call the recover function.
+ * Secondly, we are using panic to throw an error.
+ * Thirdly, we are using recover to catch the error.
  */
 func processWithPanic() {
 	defer func() {
@@ -88,16 +96,17 @@ func main() {
 
 	/**
 	 * 2. Custom error types
-	 * Demonstrates using custom error structures
+	 * Shows how to use custom error types
 	 */
 	log.Println("\n2. Custom error types")
+
 	if err := validateAge(200); err != nil {
 		log.Printf("Validation error: %v\n", err)
 	}
 
 	/**
 	 * 3. Multiple error handling
-	 * Shows handling different types of errors
+	 * Here we are handling different types of errors
 	 */
 	log.Println("\n3. Multiple error handling")
 	ages := []int{-5, 25, 200}
@@ -116,7 +125,9 @@ func main() {
 
 	/**
 	 * 4. Error wrapping
-	 * Demonstrates wrapping and unwrapping errors
+	 * Here we are wrapping an error and checking if the original error is present in the wrapped error. Errorf is used to wrap the error. The idea of wrapping is to add more context to the error eg:
+	 * wrappedErr := fmt.Errorf("calculation error: %w", err)
+	 * Here we are adding more context to the error by saying it is a calculation error.
 	 */
 	log.Println("\n4. Error wrapping")
 	_, err = divide(1, 0)
@@ -130,7 +141,7 @@ func main() {
 
 	/**
 	 * 5. Panic and recover
-	 * Shows how to handle panic situations
+	 * Here we are handling panic situations.
 	 */
 	log.Println("\n5. Panic and recover")
 	processWithPanic()

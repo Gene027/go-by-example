@@ -3,8 +3,7 @@ package main
 import "log"
 
 /**
- * Array Examples demonstrates the basic usage of arrays in Go.
- * Arrays are fixed-size collections of elements of the same type.
+ * Arrays are fixed-size collections of elements of the same type. Arrays are used to store multiple values of the same type in a single variable, instead of declaring separate variables for each value
  * Key concepts covered:
  * - Array declaration and initialization
  * - Fixed-size nature of arrays
@@ -18,7 +17,8 @@ func main() {
 
 	/**
 	 * 1. Basic array declaration
-	 * Shows different ways to declare and initialize arrays
+	 * This example shows how to declare an array with an explicit size.
+	 * The size is specified in the declaration.
 	 */
 	log.Println("\n1. Basic array declaration")
 	var numbers [5]int // Zero-initialized array
@@ -29,7 +29,8 @@ func main() {
 
 	/**
 	 * 2. Array initialization
-	 * Demonstrates array literal syntax and partial initialization
+	 * This example shows how to declare an array with an explicit size.
+	 * The size is specified in the declaration.
 	 */
 	log.Println("\n2. Array initialization")
 	fruits := [3]string{"apple", "banana", "orange"}
@@ -37,21 +38,24 @@ func main() {
 
 	/**
 	 * 3. Array with implicit size
-	 * Shows how Go can infer array size from initialization
+	 * This example shows how to declare an array with an implicit size.
+	 * The size is inferred from the number of elements in the array.
 	 */
 	log.Println("\n3. Array with implicit size")
 	colors := [...]string{"red", "green", "blue"}
-	log.Printf("Colors (length %d): %v\n", len(colors), colors)
+	log.Printf("Colors (length %d): %v\n", len(colors), colors) //len() is used to get the length of the array
 
 	/**
-	 * 4. Multi-dimensional arrays
-	 * Demonstrates arrays of arrays (matrices)
+	 * 4. Multi-dimensional arrays 2D
+	 * This example shows how to declare a 2D array.
+	 * The size is specified in the declaration.
 	 */
 	log.Println("\n4. Multi-dimensional arrays")
 	matrix := [2][3]int{
 		{1, 2, 3},
 		{4, 5, 6},
 	}
+	// This is a loop that iterates over the rows of the matrix
 	for i, row := range matrix {
 		log.Printf("Row %d: %v\n", i, row)
 	}
@@ -73,7 +77,7 @@ func main() {
 
 	/**
 	 * 6. Array copying
-	 * Demonstrates how arrays are copied by value
+	 * The copy has a different memory address than the original.
 	 */
 	log.Println("\n6. Array copying")
 	original := [3]int{1, 2, 3}

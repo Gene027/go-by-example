@@ -3,7 +3,6 @@ package main
 import "log"
 
 /**
- * Map Examples demonstrates the usage and behavior of Go maps.
  * Maps are key-value pairs that are unordered and unique.
  * Key concepts covered:
  * - Map creation and initialization
@@ -18,7 +17,7 @@ func main() {
 
 	/**
 	 * 1. Basic map creation
-	 * Shows literal syntax for creating and initializing maps
+	 * Syntax: b := map[KeyType]ValueType{key1:value1, key2:value2,...}
 	 */
 	log.Println("\n1. Basic map creation")
 	scores := map[string]int{
@@ -33,10 +32,15 @@ func main() {
 	 * Demonstrates dynamic map creation using make function
 	 */
 	log.Println("\n2. Creating map with make")
-	ages := make(map[string]int)
+	ages := make(map[string]int) // ages != nil at this point
 	ages["Tom"] = 25
 	ages["Jerry"] = 30
 	log.Printf("Ages: %v\n", ages)
+
+	// Zero value of maps
+	log.Println("\n9. Zero value of maps")
+	var nilMap map[string]int
+	log.Printf("Nil map: %v, Is nil? %v\n", nilMap, nilMap == nil)
 
 	/**
 	 * 3. Map operations
@@ -88,8 +92,19 @@ func main() {
 	}
 	log.Printf("Users: %v\n", users)
 
-	// Zero value of maps
-	log.Println("\n9. Zero value of maps")
-	var nilMap map[string]int
-	log.Printf("Nil map: %v, Is nil? %v\n", nilMap, nilMap == nil)
+	// Map doesnt implement copy
+	log.Println("\n9. Map doesnt implement copy")
+	originalMap := map[string]int{"a": 1, "b": 2}
+	copiedMap := originalMap
+	copiedMap["a"] = 100 // This will change the original map
+	log.Printf("Original map: %v\n", originalMap)
+	log.Printf("Copied map: %v\n", copiedMap)
+
+	// How to copy maps
+	log.Println("\n10. How to copy maps")
+	originalMap2 := map[string]int{"a": 1, "b": 2}
+	copiedMap2 := make(map[string]int)
+	for key, value := range originalMap2 {
+		copiedMap2[key] = value
+	}
 }

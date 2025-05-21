@@ -3,8 +3,7 @@ package main
 import "log"
 
 /**
- * Closure Examples demonstrates the use of closures in Go.
- * A closure is a function value that references variables from outside its body.
+ * A closure is a function that references variables from outside its body and returns a function.
  * Key concepts covered:
  * - Function factories
  * - State encapsulation
@@ -13,7 +12,7 @@ import "log"
  */
 
 /**
- * makeCounter creates a counter function that maintains its own state
+ * makeCounter creates a counter function that maintains its own state variable eg count
  * Each returned function has its own independent count variable
  * @return: function that returns incrementing integers
  */

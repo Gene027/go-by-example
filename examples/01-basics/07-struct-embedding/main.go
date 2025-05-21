@@ -6,7 +6,6 @@ import (
 )
 
 /**
- * Struct and Struct Embedding Examples demonstrates structs and composition through embedding in Go.
  * Structs are a collection of fields that are used to represent a single entity.
  * Embedding is a way to inherit fields and methods from other structs.
  * Key concepts covered:

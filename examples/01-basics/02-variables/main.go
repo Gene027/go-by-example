@@ -5,8 +5,15 @@ import (
 )
 
 /**
- * Variables Examples demonstrates different ways to declare and use variables in Go.
- * Key concepts covered:
+ * Variables are used to store values.
+ * They can be of different types, such as:
+ * - Numeric types (integers, floats)
+ * - Strings and characters
+ * - Booleans
+ * - Arrays and slices
+ * - Maps and structs
+ * - Functions and methods
+ * - Pointers and interfaces
  * - Variable declaration syntax
  * - Short variable declaration
  * - Multiple variable declaration
@@ -35,7 +42,7 @@ func main() {
 	log.Println("\n1. Basic variable declaration")
 	var name string = "Alice"
 	var age = 25       // Type inferred
-	job := "Developer" // Short declaration
+	job := "Developer" // Short declaration cannot be used outside functions and must be assigned a value
 	log.Printf("Name: %s, Age: %d, Job: %s\n", name, age, job)
 
 	/**

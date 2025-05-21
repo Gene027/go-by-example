@@ -3,7 +3,7 @@ package main
 import "log"
 
 /**
- * Recursion Examples demonstrates different types of recursive functions in Go.
+ * Recursion is a function that calls itself.
  * Types of recursion covered:
  * - Basic recursion
  * - Tree recursion

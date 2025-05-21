@@ -3,7 +3,6 @@ package main
 import "log"
 
 /**
- * Range Iteration in Go demonstrates how to iterate over different data structures.
  * The range keyword provides a clean way to iterate over built-in types and custom collections.
  *
  * Key concepts:
@@ -36,6 +35,7 @@ func main() {
 	/**
 	 * 1. Range over slice
 	 * Shows basic slice iteration with index and value
+	 * Range returns the index and value of the slice
 	 */
 	log.Println("\n1. Range over slice")
 	numbers := []int{1, 2, 3, 4, 5}
@@ -45,7 +45,7 @@ func main() {
 
 	/**
 	 * 2. Range over map
-	 * Demonstrates map iteration with key and value
+	 * Range returns the key and value of the map
 	 */
 	log.Println("\n2. Range over map")
 	colors := map[string]string{
@@ -59,7 +59,7 @@ func main() {
 
 	/**
 	 * 3. Range over string
-	 * Shows iteration over Unicode characters
+	 * Range returns the position, character and unicode of the string
 	 */
 	log.Println("\n3. Range over string")
 	text := "Hello, 世界"
@@ -69,7 +69,7 @@ func main() {
 
 	/**
 	 * 4. Range over channel
-	 * Demonstrates channel iteration until closed
+	 * Range returns the value of the channel until it is closed
 	 */
 	log.Println("\n4. Range over channel")
 	ch := make(chan int, 3)
@@ -84,10 +84,19 @@ func main() {
 	}
 
 	/**
-	 * 5. Range with struct slice
-	 * Shows iteration over custom types
+	 * 5. Range with blank identifier
+	 * Range returns the value of the slice
 	 */
-	log.Println("\n5. Range with struct slice")
+	log.Println("\n5. Range with blank identifier")
+	for _, num := range numbers {
+		log.Printf("Value: %d\n", num)
+	}
+
+	/**
+	 * 6. Range with struct slice
+	 * Range returns the index and value of the struct slice
+	 */
+	log.Println("\n6. Range with struct slice")
 	users := []User{
 		{ID: 1, Name: "Alice"},
 		{ID: 2, Name: "Bob"},
@@ -98,17 +107,8 @@ func main() {
 	}
 
 	/**
-	 * 6. Range with blank identifier
-	 * Shows how to skip unwanted values
-	 */
-	log.Println("\n6. Range with blank identifier")
-	for _, num := range numbers {
-		log.Printf("Value: %d\n", num)
-	}
-
-	/**
 	 * 7. Range over array
-	 * Demonstrates difference between array and slice iteration
+	 * Range returns the index and value of the array
 	 */
 	log.Println("\n7. Range over array")
 	array := [3]string{"one", "two", "three"}

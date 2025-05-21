@@ -6,8 +6,7 @@ import (
 )
 
 /**
- * Variadic Functions Examples
- * Demonstrates different ways to use variadic parameters in Go:
+ * Variadic Functions are functions that can take a variable number of parameters
  * - Basic variadic functions
  * - Mixed type parameters
  * - Forwarding variadic arguments

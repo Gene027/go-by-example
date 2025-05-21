@@ -3,7 +3,7 @@ package main
 import "log"
 
 /**
- * Basic function examples demonstrating different ways to define and use functions in Go.
+ * A function is a block of code that can be called with a name.
  * This file covers:
  * - Basic function declaration and calls
  * - Multiple parameters
@@ -35,7 +35,8 @@ func add(x, y int) int {
 
 /**
  * divide shows named return value usage
- * Named return values can improve readability and allow naked returns
+ * Named return values can improve readability of the function and allow naked returns
+ * In this case, result was declared as the return value but not initialized, then it was assigned the value of x/y and will be returned automatically
  * @param x: dividend
  * @param y: divisor
  * @return result: quotient of x/y
@@ -48,6 +49,7 @@ func divide(x, y float64) (result float64) {
 /**
  * operate demonstrates function as a parameter
  * Higher-order function that takes a function as an argument
+ * In this case, the function operate takes op as a parameter which is a function that takes two int parameters and returns an int, it then returns the result of applying op to x and y
  * @param x: first operand
  * @param y: second operand
  * @param op: function that defines the operation
@@ -57,13 +59,30 @@ func operate(x, y int, op func(int, int) int) int {
 	return op(x, y)
 }
 
-// Function closure
+/**
+ * Function closure is a function that returns a function
+ * In this case, the function counter returns a function that returns an int
+ * The function counter has a count variable that is incremented each time the returned function is called
+ * @return: a function that returns an int
+ */
 func counter() func() int {
 	count := 0
 	return func() int {
 		count++
 		return count
 	}
+}
+
+/**
+ * Recursion is a function that calls itself
+ * @param n: the number to calculate the factorial of
+ * @return: the factorial of n
+ */
+func factorial(n int) int {
+	if n == 0 {
+		return 1
+	}
+	return n * factorial(n-1)
 }
 
 func main() {
@@ -111,4 +130,8 @@ func main() {
 	}
 	calc := Calculator{operation: add}
 	log.Printf("Calculator result: %d\n", calc.operation(10, 5))
+
+	// Recursion function
+	log.Println("\n8. Recursion")
+	log.Printf("Factorial of 5: %d\n", factorial(5))
 }

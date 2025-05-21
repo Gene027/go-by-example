@@ -6,7 +6,7 @@ import (
 )
 
 /**
- * Switch Statement Examples demonstrates different ways to use switch in Go.
+ * Switch is a control flow statement that allows you to match a value against a list of cases.
  * Key concepts covered:
  * - Basic switch syntax
  * - Multiple cases
@@ -63,7 +63,11 @@ func main() {
 		log.Println("Good evening!")
 	}
 
-	// Switch with fallthrough
+	/**
+	 * 4. Switch with fallthrough
+	 * The fallthrough keyword is used to transfer control to the next case.
+	 * It is used to execute the next case even if the current case matches.
+	 */
 	log.Println("\n4. Switch with fallthrough")
 	switch num := 1; num {
 	case 1:
@@ -76,7 +80,10 @@ func main() {
 		log.Println("Three")
 	}
 
-	// Type switch
+	/**
+	 * 5. Type switch
+	 * The type switch is used to check the type of an interface.
+	 */
 	log.Println("\n5. Type switch")
 	var i interface{} = "hello"
 	switch v := i.(type) {

@@ -5,13 +5,21 @@ import (
 )
 
 /**
- * Constants Examples demonstrates the usage of constants in Go.
- * Key concepts covered:
- * - Constant declaration and initialization
- * - Typed and untyped constants
- * - Enumerated constants (iota)
- * - Constant expressions
- * - Constant rules and limitations
+ * Constants are used to store values that cannot be changed.
+ * They can be of different types, such as:
+ * - Numeric types (integers, floats)
+ * - Strings and characters
+ * - Booleans
+ * - Arrays and slices
+ * - Maps and structs
+ * - Functions and methods
+ * - Pointers and interfaces
+
+ * Constants are declared using the const keyword.
+ * They can be typed or untyped.
+ * They can be enumerated using the iota keyword.
+ * They can be constant expressions.
+ * They can be constant rules and limitations
  */
 
 // Untyped constants
@@ -22,7 +30,7 @@ const (
 
 /**
  * Define named constants for days of the week
- * Using iota for automatic enumeration
+ * Using iota for automatic enumeration. The first constant is 0, the second is 1, and so on.
  */
 const (
 	Sunday    = iota // 0
@@ -42,7 +50,7 @@ const (
 
 /**
  * Define typed constants for size units
- * Shows constant expressions and type enforcement
+ * Here we are using a constant expression to calculate the value of the other constants.
  */
 const (
 	KB = 1024
