@@ -26,24 +26,33 @@ import (
  * - Timeout handling with select
  */
 
-/**
- * producer generates data and sends it to a channel
- * @param ch: channel to send data
- * @param count: number of items to produce
- */
+/*
+*
+* producer generates data and sends it to a channel
+* ch chan<- int: This parameter is a channel of type int that is used for sending data. The chan<- syntax indicates that this channel is only for sending data (write-only).
+* count int: This is an integer parameter that specifies how many items the producer should generate and send to the channel.
+
+defer close(ch): The defer keyword is used to ensure that the close(ch) function is called when the producer function completes. This closes the channel ch, signaling to any receiving goroutines that no more data will be sent on this channel.
+*/
 func producer(ch chan<- int, count int) {
 	defer close(ch) // Close channel when done
 	for i := 1; i <= count; i++ {
-		ch <- i // Send value to channel
-		time.Sleep(100 * time.Millisecond)
+		ch <- i                            // ch <- i: Sends the current value of i to the channel ch.
+		time.Sleep(100 * time.Millisecond) //Pauses the execution for 100 milliseconds before the next iteration. This simulates some delay in producing each item.
 	}
 }
 
-/**
- * consumer receives data from a channel and processes it
- * @param ch: channel to receive data from
- * @param id: consumer identifier
- */
+/*
+*
+
+  - consumer receives data from a channel and processes it
+
+  - @param ch: ch <-chan int: This parameter is a channel of type int that is used for receiving data. The <-chan syntax indicates that this channel is only for receiving data (read-only).
+
+  - for value := range ch: This is a for loop that iterates over values received from the channel ch. The range keyword is used to receive values from the channel until it is closed. Each received value is assigned to the variable value.
+
+  - @param id: consumer identifier
+*/
 func consumer(ch <-chan int, id int) {
 	for value := range ch {
 		log.Printf("Consumer %d received: %d\n", id, value)
@@ -63,15 +72,19 @@ func ping(ping chan<- string, pong <-chan string) {
 }
 
 /**
- * worker demonstrates select statement usage
+ * worker demonstrates using the select statement for handling multiple channel operations.
  * @param dataCh: channel for receiving data
  * @param quitCh: channel for receiving quit signal
+ * select is used to handle multiple channels in a non-blocking way
  */
 func worker(dataCh <-chan int, quitCh <-chan bool) {
 	for {
 		select {
+		//The worker waits to receive an integer from the dataCh channel.
 		case data := <-dataCh:
 			log.Printf("Worker received: %d\n", data)
+
+		//The worker waits for a signal on the quitCh channel.
 		case <-quitCh:
 			log.Println("Worker received quit signal")
 			return

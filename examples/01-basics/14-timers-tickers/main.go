@@ -28,17 +28,19 @@ import (
  * Shows how to execute code after a delay
  */
 func delayedOperation() {
+	// This line creates a new timer that will send a signal on its channel after 2 seconds. The time.NewTimer function is used to create a timer that will fire once after the specified duration.
 	timer := time.NewTimer(2 * time.Second)
 	defer timer.Stop()
 
 	log.Println("Starting delayed operation")
+	//This line blocks the execution of the function until the timer fires. The <-timer.C expression waits for a value to be sent on the timer's channel, which happens after the specified delay (2 seconds in this case).
 	<-timer.C
 	log.Println("Delayed operation executed")
 }
 
 /**
  * periodicTask demonstrates ticker usage
- * Shows how to perform recurring tasks
+ * Shows how to perform recurring tasks. A ticker is a mechanism that sends a signal on its channel at regular intervals, defined by the duration.
  * @param duration: interval between ticks
  * @param count: number of ticks to process
  */
@@ -47,6 +49,7 @@ func periodicTask(duration time.Duration, count int) {
 	defer ticker.Stop()
 
 	for i := 1; i <= count; i++ {
+		//<-ticker.C: This line blocks the execution until a signal is received on the ticker's channel, which happens at each interval defined by duration.
 		<-ticker.C
 		log.Printf("Tick %d: Executing periodic task\n", i)
 	}

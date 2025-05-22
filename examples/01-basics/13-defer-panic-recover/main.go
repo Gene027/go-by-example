@@ -65,7 +65,7 @@ func panicAndRecover() {
  * Demonstrates when defer arguments are evaluated
  */
 func deferWithArguments(x int) {
-	defer log.Printf("Deferred value: %d\n", x)
+	defer log.Printf("Deferred value: %d\n", x) // x here is evaluated at the time the defer is registered not when the function return therefore x is what is passed in
 	x = 2
 	log.Printf("Current value: %d\n", x)
 }

@@ -55,13 +55,17 @@ func main() {
 	 * Shows how to start concurrent execution
 	 */
 	log.Println("\n1. Basic goroutine usage")
+	// Start two goroutines which will run concurrently more like async
 	go worker(1, 2*time.Second)
 	go worker(2, 1*time.Second)
 	time.Sleep(3 * time.Second) // Wait for workers to finish
 
 	/**
 	 * 2. Multiple goroutines
-	 * Demonstrates running several goroutines simultaneously
+	 * func(id int) { ... }: This is an anonymous function that takes an integer parameter id.
+	 * (i): This is the value of i that will be passed to the anonymous function.
+	 * go func(id int) { ... }(i): This is the actual goroutine invocation, function call with i as the argument.
+	 * The anonymous function is executed in a new goroutine, and the value of i is captured at the time the goroutine is created.
 	 */
 	log.Println("\n2. Multiple goroutines")
 	for i := 1; i <= 3; i++ {

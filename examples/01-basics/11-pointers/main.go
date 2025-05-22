@@ -3,7 +3,7 @@ package main
 import "log"
 
 /**
- * Pointer Examples demonstrates the usage and behavior of pointers in Go.
+ * Pointers are a way to access and modify variables at their memory address.
  * Key concepts covered:
  * - Pointer declaration and initialization
  * - Dereferencing pointers
@@ -22,7 +22,7 @@ type Person struct {
 }
 
 /**
- * modifyValue demonstrates pointer usage to modify values
+ * modifyValue demonstrates pointer usage to modify values using the * operator which mutates the original value using the memory address
  * @param ptr: pointer to an integer
  * Shows how to modify a value through its pointer
  */
@@ -36,7 +36,7 @@ func modifyValue(ptr *int) {
  * Demonstrates updating struct fields through a pointer
  */
 func updatePerson(p *Person) {
-	p.Name = "Updated " + p.Name // No need to dereference for struct fields
+	p.Name = "Updated " + p.Name // No need to dereference for struct fields ie p.Name is already a pointer to the Name field no need to use *p.Name
 	p.Age++
 }
 
@@ -51,7 +51,7 @@ func main() {
 	x := 10
 	ptr := &x // & operator takes the address of x
 	log.Printf("Value: %d, Pointer: %p\n", x, ptr)
-	*ptr = 20 // * operator dereferences ptr
+	*ptr = 20 // * operator dereferences ptr to get the value at the memory address while ptr is a pointer to x which stores the memory address of x
 	log.Printf("Modified value: %d\n", x)
 
 	/**
@@ -87,7 +87,7 @@ func main() {
 	log.Printf("After: %d\n", value)
 
 	/**
-	 * 5. New function
+	 * 5. New function is used to create pointers to a new variable. by default the value is 0 since the type is int
 	 * Shows how to create pointers using new()
 	 */
 	log.Println("\n5. New function")
